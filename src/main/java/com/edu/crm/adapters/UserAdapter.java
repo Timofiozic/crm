@@ -8,7 +8,11 @@ import org.hibernate.Transaction;
 public class UserAdapter{
     public User read(long id) {
         try{
-            return HibernateSessionFactoryUtil.getSession().get(User.class, id);
+            Session session = HibernateSessionFactoryUtil.getSession();
+            Transaction tx = session.beginTransaction();
+            User user = session.get(User.class, id);
+            session.close();
+            return user;
         } catch (Exception ex){
             System.out.println("Trouble read:"+ ex);
             return null;

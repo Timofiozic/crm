@@ -1,39 +1,40 @@
 package com.edu.crm;
 
+import com.edu.crm.adapters.OrderAdapter;
 import com.edu.crm.adapters.UserAdapter;
 import com.edu.crm.db.HibernateSessionFactoryUtil;
 import com.edu.crm.model.User;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import com.edu.crm.model.Orders;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Calendar;
 
 @SpringBootApplication
 public class CrmApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CrmApplication.class, args);
 
-		User user = new User( "Sim", 26);
-		UserAdapter userAdapter = new UserAdapter();
-		if (userAdapter.create(user) == true){
-			System.out.println("Создали успешно");
-			System.out.println(userAdapter.read(user.getId()).getLastName());
-				System.out.println("Прочитали успешно");
-				user.setLastName("Govnoed");
-				if (userAdapter.update(user) == true){
-					System.out.println("Обновили фамилию успешно:" +user.getLastName() +" == " +userAdapter.read(user.getId()).getLastName());
-					if (userAdapter.delete(user) == true){
-						System.out.println("Удалили успешно:" +userAdapter.read(user.getId()));
-					} else System.out.println("Удалили не успешно");
-				} else System.out.println("Обновили не успешно");
-//			} else System.out.println("Прочитали не успешно" +user.getId());
-		} else System.out.println("Создали не успешно");
+		User user = new User("Sim", 26);
+		Orders order = new Orders("Order for garbage", 5600 );
 
-		HibernateSessionFactoryUtil.closeSessionFactory();
+		user.addOrder(order);
+
+		UserAdapter userAdapter = new UserAdapter();
+		OrderAdapter orderAdapter = new OrderAdapter();
+
+		userAdapter.create(user);
+		orderAdapter.create(order);
+
+		System.out.println(orderAdapter.read(order.getId()));
+		System.out.println(userAdapter.read(user.getId()));
+
+		System.out.println("Меняем имя юзера на ебобо");
+		user.setLastName("Ebobo");
+		System.out.println(orderAdapter.read(order.getId()));
+
+
 //	TODO как подлючаться, подключиться, кинуть запрос , (вынести настрйоки), создать модель, подключиться с ORM, вытащить сущность
+
 
 	}
 }
@@ -66,8 +67,8 @@ public class CrmApplication {
 //			.setProperty( "hibernate.connection.driver_class", "com.mysql.jdbc.Driver" )
 //			.setProperty( "hibernate.connection.url", URL_DB )
 //			.setProperty( "hibernate.connection.username", USER_NAME)
-//			.setProperty( "hibernate.connection.password", USER_PASS)
-//			.setProperty( "hibernate.connection.pool_size", "1" )
+//			.setProperty( "hibernatection.password", USER_PASS)
+//			.setProperty( "hibernate.conne.connection.pool_size", "1" )
 //			.setProperty( "hibernate.connection.autocommit", "true" )
 //			.setProperty( "hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect" )
 //			.setProperty( "hibernate.show_sql","true" )

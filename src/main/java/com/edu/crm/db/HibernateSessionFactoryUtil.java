@@ -1,6 +1,6 @@
 package com.edu.crm.db;
 
-import com.edu.crm.model.Order;
+import com.edu.crm.model.Orders;
 import com.edu.crm.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,12 +16,12 @@ public class HibernateSessionFactoryUtil  {
          try{
              Configuration configuration = new Configuration().configure();
              configuration.addAnnotatedClass(User.class);
-//             configuration.addAnnotatedClass(Order.class);
+             configuration.addAnnotatedClass(Orders.class);
              StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
              sessionFactory = configuration.buildSessionFactory(builder.build());
 
          } catch (Exception ex){
-             System.out.println("Исключение в создании сессии"+ex);
+             System.out.println("Исключение в создании сессии "+ex);
          }
         }
         return sessionFactory.openSession();
