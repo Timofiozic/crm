@@ -4,9 +4,10 @@ import com.edu.crm.db.HibernateSessionFactoryUtil;
 import com.edu.crm.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class OrderAdapter {
-
     public Orders read(long id) {
         try{
             return HibernateSessionFactoryUtil.getSession().get(Orders.class, id);

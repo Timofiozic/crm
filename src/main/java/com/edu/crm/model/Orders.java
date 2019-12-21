@@ -9,7 +9,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "userId")
     private User user;
 
@@ -50,13 +50,4 @@ public class Orders {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "id=" + id +
-                ", user=" + user +
-                ", description='" + description + '\'' +
-                ", sum=" + sum +
-                '}';
-    }
 }

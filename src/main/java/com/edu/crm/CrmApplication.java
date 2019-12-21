@@ -2,41 +2,21 @@ package com.edu.crm;
 
 import com.edu.crm.adapters.OrderAdapter;
 import com.edu.crm.adapters.UserAdapter;
-import com.edu.crm.db.HibernateSessionFactoryUtil;
 import com.edu.crm.model.User;
 import com.edu.crm.model.Orders;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
 public class CrmApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(CrmApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(CrmApplication.class, args);
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 
-		User user = new User("Sim", 26);
-		Orders order = new Orders("Order for garbage", 5600 );
-
-		user.addOrder(order);
-
-		UserAdapter userAdapter = new UserAdapter();
-		OrderAdapter orderAdapter = new OrderAdapter();
-
-		userAdapter.create(user);
-		orderAdapter.create(order);
-
-		System.out.println(orderAdapter.read(order.getId()));
-		System.out.println(userAdapter.read(user.getId()));
-
-		System.out.println("Меняем имя юзера на ебобо");
-		user.setLastName("Ebobo");
-		System.out.println(orderAdapter.read(order.getId()));
-
-
-//	TODO как подлючаться, подключиться, кинуть запрос , (вынести настрйоки), создать модель, подключиться с ORM, вытащить сущность
-
-
-	}
+    }
 }
 /*
 * try {

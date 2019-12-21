@@ -12,26 +12,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Orders> orderList;
 
     private String lastName;
     private int age;
 
-    public List<Orders> getUserList() {
+    private List<Orders> getUserList() {
         return orderList;
     }
-    public void setUserList(List<Orders> userList) {
+    private void setUserList(List<Orders> userList) {
         this.orderList = userList;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
     }
 
     public User(){}
