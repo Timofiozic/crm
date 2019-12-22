@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserService {
 
-    @Autowired
     private UserAdapter userAdapter;
 
     @GetMapping("/{id}")
     @ResponseBody
-    public User getUser(@PathVariable String id){
-        return userAdapter.read(Integer.parseInt(id));
+    public User getUser(@PathVariable Long id) {
+        return userAdapter.read(id);
     }
 
+    @Autowired
+    public void setUserAdapter(UserAdapter userAdapter) {
+        this.userAdapter = userAdapter;
+    }
 }

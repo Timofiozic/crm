@@ -3,24 +3,18 @@ package com.edu.crm.model;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "Orders")
-public class Orders {
+@Table(name = "Orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "userId")
     private User user;
 
     private String description;
-    private int sum;
-
-    public Orders() {}
-    public Orders(String description, int sum) {
-        this.description = description;
-        this.sum = sum;
-    }
+    private Integer sum;
 
     public String getDescription() {
         return description;
@@ -29,10 +23,10 @@ public class Orders {
         this.description = description;
     }
 
-    public int getSum() {
+    public Integer getSum() {
         return sum;
     }
-    public void setSum(int sum) {
+    public void setSum(Integer sum) {
         this.sum = sum;
     }
 
@@ -43,10 +37,10 @@ public class Orders {
         this.user = user;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

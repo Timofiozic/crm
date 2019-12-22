@@ -15,7 +15,10 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>8</java.version>
+		<java.version>13</java.version>
+		<mysql.driver.version>8.0.18</mysql.driver.version>
+		<hibernate.version>6.0.0.Alpha4</hibernate.version>
+		<log4j2.version>2.13.0</log4j2.version>
 	</properties>
 
 	<dependencies>
@@ -34,13 +37,24 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.18</version>
+			<version>${mysql.driver.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.10.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -6,12 +6,12 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://195.123.213.44:80/test</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">Ak0vfcnth</property>
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="hibernate.connection.pool_size">1</property>
+        <property name="hibernate.connection.pool_size">10</property>
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         <!-- SQL dialect -->
@@ -19,6 +19,8 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="current_session_context_class">thread</property>
+<!--        <mapping class="com.edu.crm.model.User" />-->
+<!--        <mapping class="com.edu.crm.model.Order" />-->
 
     </session-factory>
 </hibernate-configuration>
