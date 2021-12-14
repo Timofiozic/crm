@@ -18,7 +18,7 @@
 		<java.version>13</java.version>
 		<mysql.driver.version>8.0.18</mysql.driver.version>
 		<hibernate.version>6.0.0.Alpha4</hibernate.version>
-		<log4j2.version>2.13.0</log4j2.version>
+		<log4j2.version>2.16.0</log4j2.version>
 	</properties>
 
 	<dependencies>
